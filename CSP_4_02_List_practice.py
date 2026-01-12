@@ -9,8 +9,16 @@ def bookends(li: list):
     :param list:
     :return:
     """
-
-
+def bookends(li: list):
+    """
+    Given a list of numbers remove the first and last elements from the list and
+    return a new list of those two elements.
+    """
+    first = li[0]
+    last = li[-1]
+    li.pop(-1)
+    li.pop(0)
+    return [first, last]
 
 def inOrder(li : list):
     """
@@ -18,8 +26,14 @@ def inOrder(li : list):
     :param list:
     :return:
     """
-
-
+def inOrder(li: list):
+    """
+    Given a list of numbers return true if the list is in ascending order.
+    """
+    for i in range(len(li) - 1):
+        if li[i] > li[i + 1]:
+            return False
+    return True
 
 def find(li: list, target : int):
     """
@@ -38,7 +52,14 @@ def find(li: list, target : int):
     :param target:
     :return:
     """
-
+def find(li: list, target: int):
+    """
+    Return the index of target in the list or -1 if not found.
+    """
+    for i in range(len(li)):
+        if li[i] == target:
+            return i
+    return -11
 
 def removeLowest(li):
     """
@@ -48,7 +69,19 @@ def removeLowest(li):
     :param list:
     :return:
     """
+def removeLowest(li):
+    """
+    Remove the lowest value from the list.
+    """
+    lowest = li[0]
+    for num in li:
+        if num < lowest:
+            lowest = num
 
+    for i in range(len(li)):
+        if li[i] == lowest:
+            li.pop(i)
+            break
 
 def keepOrder(li: list, value):
     """
@@ -59,7 +92,15 @@ def keepOrder(li: list, value):
     :param value:
     :return:
     """
-
+def keepOrder(li: list, value):
+    """
+    Insert value into a sorted list while keeping order.
+    """
+    for i in range(len(li)):
+        if value <= li[i]:
+            li.insert(i, value)
+            return
+    li.append(value)
 
 def merge(l1:list, l2:list):
     """
@@ -70,4 +111,25 @@ def merge(l1:list, l2:list):
     :param l2:
     :return:
     """
-    
+def merge(l1: list, l2: list):
+    """
+    Merge two sorted lists into a new sorted list.
+    """
+    result = []
+    i = 0
+    j = 0
+    while i < len(l1) and j < len(l2):
+        if l1[i] <= l2[j]:
+            result.append(l1[i])
+            i += 1
+        else:
+            result.append(l2[j])
+            j += 1
+    while i < len(l1):
+        result.append(l1[i])
+        i += 1
+
+    while j < len(l2):
+        result.append(l2[j])
+        j += 1
+    return result
